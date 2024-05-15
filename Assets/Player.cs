@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && grounded){
             body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        Debug.Log("Player Update");
+        //Debug.Log("Player Update");
     }
 
 }

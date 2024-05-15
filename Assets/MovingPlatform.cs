@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public Vector3 finsihPro = Vector3.zero;
-    public float speed = 0.5f;
-    private Vector3 startPos;
-    private float trackPercent = 0;
-    private int direction = 1; 
-    // Start is called before the first frame update
+    
+    public Vector3 finishPos = Vector3.zero; // Target position for the platform
+    public float speed = 0.5f; // Speed of the platform movement
+    private Vector3 startPos; // Starting position of the platform
+    private float trackPercent = 0; // Percentage of the way the platform has moved
+    private int direction = 1; // Direction of movement (1 for down, -1 for up)
+
     void Start()
     {
-        startPos = transform.position;
+        startPos = transform.position; // Store the starting position
     }
 
-    // Update is called once per frame
     void Update()
     {
-        trackPercent += direction * speed * Time.deltaTime;
-        float x = (finsihPro.x - startPos.x) * trackPercent + startPos.x;
-        float y = (finsihPro.y - startPos.y) * trackPercent + startPos.y;
-        transform.position = new Vector3(x,y, startPos.z);
+        trackPercent += direction * speed * Time.deltaTime; // Calculate the percentage of the way the platform has moved
+        float y = Mathf.Lerp(startPos.y, finishPos.y, trackPercent); // Linearly interpolate between start and end positions
+        transform.position = new Vector3(transform.position.x, y, transform.position.z); // Move the platform vertically
 
-        if ((direction == 1 && trackPercent > 0.9f) || (direction == -1 && trackPercent < 0.1f)){
-            direction *= -1;
+        // Reverse direction when reaching the target position
+        if ((direction == 1 && trackPercent >= 0.9f) || (direction == -1 && trackPercent <= 0.1f))
+        {
+            direction *= -1; // Change direction
         }
     }
 }
+

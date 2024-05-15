@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "4410-Final.sln"
+    "dotnet.defaultSolution": "4410Finla.sln"
 }

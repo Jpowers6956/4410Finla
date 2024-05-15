@@ -7,14 +7,11 @@ public class Door : MonoBehaviour
     public GameObject keySprite;
     public GameObject doorBlocker;
     public GameObject keyInventory;
-    public GameObject scoreSprite;
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Player") && !keySprite.activeSelf){
                 Destroy(doorBlocker);
-                keyInventory.SetActive(false);
-                scoreSprite.SetActive(true);
-                
+                keyInventory.SetActive(false);                
         }
 
     }
